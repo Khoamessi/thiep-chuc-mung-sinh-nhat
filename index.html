@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thiệp Sinh Nhật - Bác Hai</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+        .container {
+            position: relative;
+            cursor: pointer;
+        }
+        .thiep {
+            width: 360px;
+            height: 460px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s ease-in-out;
+        }
+        .container.mo .thiep {
+            transform: rotateY(180deg);
+        }
+
+        .mat-truoc {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, #e74c3c, #c0392b);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            backface-visibility: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .mat-truoc .bong-hoa {
+            font-size: 70px;
+            margin-bottom: 20px;
+            animation: nho 1.5s infinite alternate;
+        }
+        @keyframes nho {
+            from { transform: scale(1); }
+            to { transform: scale(1.15); }
+        }
+        .mat-truoc h2 {
+            font-size: 24px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .mat-truoc .ghi-chu {
+            margin-top: 30px;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .mat-sau {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #fff9f5;
+            border-radius: 15px;
+            transform: rotateY(180deg);
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        .mat-sau h1 {
+            color: #d63031;
+            font-size: 28px;
+            margin-bottom: 25px;
+        }
+        .mat-sau .noi-dung {
+            font-size: 19px;
+            color: #2d3436;
+            line-height: 1.8;
+        }
+        .mat-sau .chuky {
+            margin-top: 40px;
+            font-size: 17px;
+            font-style: italic;
+            color: #636e72;
+        }
+        .nhip-nhay {
+margin-top: 15px;
+            font-size: 24px;
+            animation: nhay 0.8s infinite alternate;
+        }
+        @keyframes nhay {
+            from { opacity: 1; }
+            to { opacity: 0.3; }
+        }
+
+        .phao-hoa {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .hat {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            animation: roi 4s ease-in-out infinite;
+        }
+        @keyframes roi {
+            0% { transform: translateY(-20px); opacity: 1; }
+            100% { transform: translateY(500px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="phao-hoa" id="phaoHoa"></div>
+
+    <div class="container" id="thiep" onclick="moThiep()">
+        <div class="thiep">
+  
+            <div class="mat-truoc">
+                <div class="bong-hoa">💐🎂</div>
+                <h2>Thiệp Sinh Nhật</h2>
+                <p class="ghi-chu">👉 Nhấn để mở</p>
+            </div>
+
+      
+            <div class="mat-sau">
+                <h1>🎉 Chúc Mừng Sinh Nhật! 🎉</h1>
+                <div class="noi-dung">
+                    Kính chúc Bác Hai<br>
+                    Sinh nhật thật vui vẻ ✨<br>
+                    Luôn mạnh khỏe, bình an ❤️<br>
+                    Mọi điều tốt đẹp nhất<br>
+                    Đều đến với bác! 🎁
+                </div>
+                <p class="chuky">Cháu kính chúc 🌹</p>
+                <div class="nhip-nhay">🎈🎊🎆</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        const mau = ['#ff6b6b', '#feca57', '#48dbfb', '#ff9ff3', '#54a0ff', '#5f27cd'];
+        const phaoHoa = document.getElementById('phaoHoa');
+        
+        function taoHat() {
+            const hat = document.createElement('div');
+            hat.classList.add('hat');
+            hat.style.left = Math.random() * 100 + '%';
+            hat.style.backgroundColor = mau[Math.floor(Math.random() * mau.length)];
+            hat.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            hat.style.width = (Math.random() * 8 + 4) + 'px';
+            hat.style.height = hat.style.width;
+            phaoHoa.appendChild(hat);
+            
+            setTimeout(() => hat.remove(), 5000);
+        }
+        
+        setInterval(taoHat, 300);
+
+    
+        function moThiep() {
+            document.getElementById('thiep').classList.toggle('mo');
+        }
+    </script>
+</body>
+</html>
